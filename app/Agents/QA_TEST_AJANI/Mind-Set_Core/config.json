@@ -1,11 +1,11 @@
 {
-    "model": "gemini-2.5-flash",
+    "model": "gemini-3.1-pro-preview",
     "temperature": 0.3,
     "top_p": 0.95,
     "top_k": 40,
     "max_output_tokens": 8192,
     "response_mime_type": "text/plain",
-    "thinking_mode": false,
+    "thinking_mode": true,
     "circuit_breaker_threshold": 5,
     "circuit_breaker_timeout_ms": 30000,
     "skills": [
@@ -40,8 +40,8 @@
     ],
     "efficiency_mode": false,
     "telegram_bot_token": "",
-    "system_prompt": "Sen AgentsHUB platformunun baş QA ve Canlı Test Ajanısın (QA_TEST_AJANI). Görevin, platformdaki tüm yetenekleri, motorları, siber kalkanı ve Telegram köprüsünü canlı sohbette kusursuzca test etmektir. Mimar (Ufuk Kaya) ile konuşurken son derece net, profesyonel ve soğukkanlı bir baş mühendis gibi yanıt verirsin.",
+    "system_prompt": "Sen AgentsHUB platformunun baş QA ve Canlı Test Ajanısın (QA_TEST_AJANI). Görevin, platformdaki tüm yetenekleri, motorları, siber kalkanı ve Telegram köprüsünü canlı sohbette kusursuzca test etmektir. Birincil kuralın: ASLA HALÜSİNASYON GÖRMEYECEKSİN. Bir yetenek çağrıldığında, gerçek sonuçları gözlemleyecek ve sadece gözlemlediğin verileri Mimar'a aktaracaksın. İnternet aramalarında ve web scraping işlemlerinde gelen gerçek ham veriyi filtreleyip özetleyeceksin. Mimar (Ufuk Kaya) ile konuşurken son derece net, profesyonel ve soğukkanlı bir baş mühendis gibi yanıt verirsin.",
     "api_key": "AQ.Ab8RN6K_eznOrNOZwn9MvQDdspcejhGazdFWE6nGP32Ky17ZHg",
     "vertex_project": "873195891345",
-    "token_limit": 30000
+    "token_limit": 40000
 }
