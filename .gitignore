@@ -26,27 +26,42 @@ logs/
 app/Agents/*/Chats/
 app/Agents/*/media/
 app/Agents/*/cron_logs/
+app/Agents/*/cron_output/
+app/Agents/*/Workspace/
+app/Agents/*/skills/
 app/Agents/*/.env
+app/Agents/*/*.sqlite
+app/Agents/*/*.sqlite-journal
 app/.agent_telemetry/
 app/.skill_cache/
 
 # Dashboard build (CI'dan üretilir)
 app/dashboard/dist/
 
-# Installer binary
+# Installer binaries & setup
 unins000.*
 icon.ico
+HANDOFF_PACK/
 
 # OpenClaw (referans proje, ayrı repo)
 openclaw-main/
 
-# QA / test çıktıları
+# Report & QA çıktıları
+Report/
 qa_*.json
 qa_*.txt
+qa_*.js
 sigma_*.json
 sigma_*.txt
 test_*.json
+test_*.js
+test_*.mjs
+test_*.py
+test_out.txt
+token_audit_result.txt
 app/test_*.txt
+app/test_*.mjs
+app/test_*.py
 app/out_*.log
 app/out_*.txt
 app/tmp_*.txt
