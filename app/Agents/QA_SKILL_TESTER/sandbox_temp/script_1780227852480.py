@@ -1,0 +1,1 @@
+print("QA_TEST_OK", 2+2)
