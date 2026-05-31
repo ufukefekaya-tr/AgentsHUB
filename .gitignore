@@ -1,0 +1,90 @@
+# ============================================================
+# AgentsHUB — .gitignore
+# ============================================================
+
+# Runtime & Dependencies
+node_modules/
+node/
+
+# Secrets & Environment
+.env
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# Runtime state
+.pid
+.port
+
+# SQLite & Embeddings (kullanıcıya özel veri)
+*.sqlite
+*.db
+
+# Agent verisi (kullanıcıya özel)
+app/Agents/*/Chats/
+app/Agents/*/media/
+app/Agents/*/cron_logs/
+app/Agents/*/cron_output/
+app/Agents/*/Workspace/
+app/Agents/*/skills/
+app/Agents/*/.env
+app/Agents/*/*.sqlite
+app/Agents/*/*.sqlite-journal
+app/.agent_telemetry/
+app/.skill_cache/
+
+# Dashboard build (CI'dan üretilir)
+app/dashboard/dist/
+
+# Installer binaries & setup
+unins000.*
+icon.ico
+HANDOFF_PACK/
+
+# OpenClaw (referans proje, ayrı repo)
+openclaw-main/
+
+# Report & QA çıktıları
+Report/
+qa_*.json
+qa_*.txt
+qa_*.js
+sigma_*.json
+sigma_*.txt
+test_*.json
+test_*.js
+test_*.mjs
+test_*.py
+test_out.txt
+token_audit_result.txt
+app/test_*.txt
+app/test_*.mjs
+app/test_*.py
+app/out_*.log
+app/out_*.txt
+app/tmp_*.txt
+app/sdk_diag.txt
+app/embeds_raw.txt
+app/token_audit_result.txt
+app/clawhub_test_report.txt
+app/build_out.log
+app/server*.log
+app/server_*.log
+app/db.json
+app/models_list.json
+app/sigma_*.json
+app/sigma_*.txt
+app/test_07_full_report.json
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user

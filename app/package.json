@@ -1,0 +1,49 @@
+{
+  "name": "agentshub",
+  "version": "1.0.0",
+  "description": "AgentsHUB - AI Agent Platform",
+  "main": "src/gateway/ui_server.js",
+  "bin": "src/gateway/ui_server.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:server": "node src/gateway/ui_server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^1.45.0",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.1",
+    "googleapis": "^171.4.0",
+    "grammy": "^1.41.1",
+    "helmet": "^8.1.0",
+    "imapflow": "^1.2.18",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.1.1",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^8.0.4",
+    "pdf-parse": "^2.4.5",
+    "playwright": "^1.58.2",
+    "xlsx": "^0.18.5"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^12.8.0"
+  },
+  "pkg": {
+    "scripts": "src/**/*.js",
+    "assets": [
+      "dashboard/dist/**/*"
+    ]
+  },
+  "devDependencies": {
+    "vitest": "^4.1.2"
+  }
+}
