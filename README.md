@@ -49,6 +49,27 @@ Verileriniz sadece **sizin bilgisayarınızda** kalır. Hiçbir sohbet geçmişi
 | **Özelleştirme** | Sınırlı | Sınırsız (kendi ajanlarınızı kurun) |
 | **Otonom çalışma** | ❌ | ✅ Zamanlanmış görevler, otonom öğrenme |
 
+### ⚔️ AgentsHUB vs OpenClaw — Açık Kaynak Ajan Platformları
+
+| Kriter | OpenClaw | AgentsHUB |
+|--------|----------|----------|
+| **Arayüz** | Terminal (CLI) | Modern Web Dashboard |
+| **Kurulum** | `npm i -g` + config dosyaları | Çift tıkla → çalışır |
+| **Hedef kitle** | Geliştiriciler | Herkes |
+| **Aylık maliyet** | Model bağımlı ($20-200+) | **$0/ay** ($300 ücretsiz kredi = ~1 yıl) |
+| **Yetenek sayısı** | 51 (doküman tabanlı) | 29 (çalıştırılabilir sandbox kodu) |
+| **Model desteği** | 15+ provider | Google Gemini (AI Studio + Vertex AI) |
+| **Kanal desteği** | 12+ kanal (Discord, Slack, Telegram...) | Web Dashboard + Telegram |
+| **Otonom öğrenme** | ❌ | ✅ Kaizen Engine (otomatik davranış iyileştirme) |
+| **Ajan doğurma** | Template tabanlı | ✅ Genesis (ajan → yeni ajan oluşturur) |
+| **Hafıza sistemi** | LanceDB (tek katman) | 3 katmanlı (RAM + SQLite/Vektör + Google Cache) |
+| **Görsel üretme** | ❌ | ✅ Google Imagen entegrasyonu |
+| **Türkçe arayüz** | ❌ | ✅ Tam Türkçe |
+| **Circuit Breaker** | ❌ | ✅ Otomatik hata yönetimi ve devre kesici |
+| **Kurulum süresi** | ~10 dk (terminal bilgisi gerekir) | ~2 dk (çift tıkla veya setup.exe) |
+
+> 📖 Detaylı teknik karşılaştırma: [OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
+
 ### ✨ Özellikler
 
 #### 🧠 29 Yerleşik Yetenek (Skill)
@@ -182,26 +203,6 @@ AgentsHUB/
 
 > ⚠️ Gemini 2.0 ve altı sürümler desteklenmez.
 
-### ⚔️ AgentsHUB vs OpenClaw — Açık Kaynak Ajan Platformları
-
-| Kriter | OpenClaw | AgentsHUB |
-|--------|----------|----------|
-| **Arayüz** | Terminal (CLI) | Modern Web Dashboard |
-| **Kurulum** | `npm i -g` + config dosyaları | Çift tıkla → çalışır |
-| **Hedef kitle** | Geliştiriciler | Herkes |
-| **Aylık maliyet** | Model bağımlı ($20-200+) | **$0/ay** ($300 ücretsiz kredi = ~1 yıl) |
-| **Yetenek sayısı** | 51 (doküman tabanlı) | 29 (çalıştırılabilir kod) |
-| **Otonom öğrenme** | ❌ | ✅ Kaizen Engine |
-| **Ajan oluşturma** | Template tabanlı | ✅ Genesis (ajan → ajan doğurma) |
-| **Hafıza sistemi** | LanceDB (tek katman) | 3 katmanlı (RAM + SQLite + Cache) |
-| **Görsel üretme** | ❌ | ✅ Google Imagen |
-| **Gizlilik** | Bulut API'ye bağımlı | %100 yerel, veri dışarı çıkmaz |
-| **Türkçe destek** | ❌ | ✅ Tam Türkçe arayüz |
-| **Uzaktan erişim** | ❌ | ✅ Telegram Bot |
-| **Circuit Breaker** | ❌ | ✅ Otomatik hata yönetimi |
-| **Kurulum süresi** | ~10 dk (terminal bilgisi gerekir) | ~2 dk (çift tıkla) |
-
-> 📖 Detaylı teknik karşılaştırma: [docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
 
 ### 📄 Lisans
 
@@ -231,6 +232,27 @@ AgentsHUB is an **open-source Agentic Operating System** that runs entirely on y
 | **Capabilities** | Chat only | Files, terminal, web, email, PDF... |
 | **Customization** | Limited | Unlimited (build your own agents) |
 | **Autonomous work** | ❌ | ✅ Scheduled tasks, self-learning |
+
+### ⚔️ AgentsHUB vs OpenClaw — Open Source Agent Platforms
+
+| Criteria | OpenClaw | AgentsHUB |
+|----------|----------|-----------|
+| **Interface** | Terminal (CLI) | Modern Web Dashboard |
+| **Installation** | `npm i -g` + config files | Double-click → runs |
+| **Target audience** | Developers | Everyone |
+| **Monthly cost** | Model-dependent ($20-200+) | **$0/month** ($300 free credit = ~1 year) |
+| **Skill count** | 51 (document-based) | 29 (executable sandbox code) |
+| **Model support** | 15+ providers | Google Gemini (AI Studio + Vertex AI) |
+| **Channel support** | 12+ channels (Discord, Slack, Telegram...) | Web Dashboard + Telegram |
+| **Autonomous learning** | ❌ | ✅ Kaizen Engine (auto behavior improvement) |
+| **Agent spawning** | Template-based | ✅ Genesis (agent → creates new agents) |
+| **Memory system** | LanceDB (single layer) | 3-layer (RAM + SQLite/Vector + Google Cache) |
+| **Image generation** | ❌ | ✅ Google Imagen integration |
+| **Turkish UI** | ❌ | ✅ Full Turkish interface |
+| **Circuit Breaker** | ❌ | ✅ Automatic fault tolerance |
+| **Setup time** | ~10 min (terminal required) | ~2 min (double-click or setup.exe) |
+
+> 📖 Detailed technical comparison: [OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
 
 ### ✨ Features
 
@@ -364,25 +386,6 @@ AgentsHUB/
 
 > ⚠️ Gemini 2.0 and below are not supported.
 
-### ⚔️ AgentsHUB vs OpenClaw — Open Source Agent Platforms
-
-| Criteria | OpenClaw | AgentsHUB |
-|----------|----------|-----------|
-| **Interface** | Terminal (CLI) | Modern Web Dashboard |
-| **Installation** | `npm i -g` + config files | Double-click → runs |
-| **Target audience** | Developers | Everyone |
-| **Monthly cost** | Model-dependent ($20-200+) | **$0/month** ($300 free credit = ~1 year) |
-| **Skill count** | 51 (document-based) | 29 (executable code) |
-| **Autonomous learning** | ❌ | ✅ Kaizen Engine |
-| **Agent creation** | Template-based | ✅ Genesis (agent → spawns agents) |
-| **Memory system** | LanceDB (single layer) | 3-layer (RAM + SQLite + Cache) |
-| **Image generation** | ❌ | ✅ Google Imagen |
-| **Privacy** | Cloud API dependent | 100% local, data never leaves |
-| **Remote access** | ❌ | ✅ Telegram Bot |
-| **Circuit Breaker** | ❌ | ✅ Automatic fault tolerance |
-| **Setup time** | ~10 min (terminal required) | ~2 min (double-click) |
-
-> 📖 Detailed technical comparison: [docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
 
 ### 📄 License
 
