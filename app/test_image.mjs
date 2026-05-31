@@ -1,4 +1,4 @@
-import { SandboxRunner } from './src/skills/sandbox_runner.js';
+﻿import { SandboxRunner } from './src/skills/sandbox_runner.js';
 import path from 'path';
 
 async function test() {
@@ -9,7 +9,7 @@ async function test() {
     };
 
     const enhancedContext = {
-        apiKey: "AQ.Ab8RN6JSQIir6QVpJ5EnHRuxNbHhfSnhFU59lo2MUJVaSWXM4g",
+        apiKey: "__API_KEY__",
         vertexProject: "873195891345",
         vertexLocation: "",
         agentId: "MASTER_TESTER",
@@ -24,3 +24,4 @@ async function test() {
 }
 
 test().catch(console.error);
+

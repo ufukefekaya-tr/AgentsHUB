@@ -1,8 +1,8 @@
-// fetch is global in Node 18+
+﻿// fetch is global in Node 18+
 
 const API = 'http://localhost:3434/api'; 
 const H = {'x-api-key':'agentshub_secure_key_2026','Content-Type':'application/json'};
-const AGENT_KEY = 'AQ.Ab8RN6JSQIir6QVpJ5EnHRuxNbHhfSnhFU59lo2MUJVaSWXM4g';
+const AGENT_KEY = '__API_KEY__';
 const AGENT_ID = 'QA_ATLAS_V3';
 
 async function fullQA() {
@@ -173,3 +173,4 @@ async function fullQA() {
 }
 
 fullQA().catch(console.error);
+
