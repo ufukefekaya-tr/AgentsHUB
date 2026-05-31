@@ -1,0 +1,12 @@
+{
+  "id": 1774918703989,
+  "topic": "Python Kurulumu",
+  "content": "Ufuk Kaya'nın bilgisayarında Python kurulu değil veya PATH'e eklenmemiş. python_runner aracı bu yüzden çalışmıyor.",
+  "tags": [
+    "python",
+    "kurulum",
+    "hata",
+    "python_runner"
+  ],
+  "saved_at": "2026-03-31T00:58:23.989Z"
+}

@@ -1,0 +1,11 @@
+import { readFileSync } from 'fs';
+const src = readFileSync('./node_modules/@google/genai/dist/node/index.mjs', 'utf8');
+const embedIdx = src.indexOf('embedContent');
+const region = src.slice(embedIdx - 500, embedIdx + 800);
+const vMatches = region.match(/(v1beta|v1alpha)/g);
+process.stdout.write('embed API versions: ' + JSON.stringify([...new Set(vMatches || [])]) + '\n');
+const vConst = src.match(/API_VERSION[^=]*=\s*["']([^"']+)/);
+if (vConst) process.stdout.write('API_VERSION: ' + vConst[1] + '\n');
+const urls = src.match(/https:\/\/\S*(googleapis|aiplatform)\S+/g);
+const uniq = [...new Set(urls || [])].slice(0,5);
+process.stdout.write('URLs: ' + uniq.join(' | ') + '\n');

@@ -1,0 +1,41 @@
+{
+  "default_model": "gemini-3.1-flash-lite-preview",
+  "fallback_model": "gemini-3.1-flash-lite-preview",
+  "models": [
+    {
+      "id": "gemini-2.5-pro",
+      "name": "Gemini 2.5 Pro",
+      "description": "En yüksek zeka ve muhakeme kapasitesi.",
+      "thinking_supported": true,
+      "tier": 1
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "name": "Gemini 2.5 Flash",
+      "description": "Hızlı ve dengeli performans.",
+      "thinking_supported": true,
+      "tier": 1
+    },
+    {
+      "id": "gemini-2.5-flash-lite",
+      "name": "Gemini 2.5 Flash-Lite",
+      "description": "Ultra hızlı ve ekonomik.",
+      "thinking_supported": true,
+      "tier": 1
+    },
+    {
+      "id": "gemini-3.1-pro-preview",
+      "name": "Gemini 3.1 Pro (Preview)",
+      "description": "Gelecek nesil pro model, yerleşik düşünce blokları.",
+      "thinking_supported": true,
+      "tier": 1
+    },
+    {
+      "id": "gemini-3.1-flash-preview",
+      "name": "Gemini 3.1 Flash (Preview)",
+      "description": "Gelecek nesil hızlı model.",
+      "thinking_supported": true,
+      "tier": 1
+    }
+  ]
+}

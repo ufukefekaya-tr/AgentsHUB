@@ -1,0 +1,7 @@
+[SİSTEM TEST RAPORU - SENARYO 2]
+Tarih: 29 Mart 2026
+Ajan: Etkilesim_Ajani
+Durum: Dosya Yazma Testi Başarılı.
+Bu dosya, sistem yeteneklerini test etmek amacıyla otonom olarak oluşturulmuştur.
+--------------------------------------------------
+Test_Merkezi klasörü ve rapor.txt dosyası başarıyla diske işlendi.

@@ -1,0 +1,26 @@
+{
+    "agents": [
+        {
+            "id": "agent_system_core",
+            "alias": "Core_Director",
+            "specialty": "system_orchestration",
+            "endpoint": "internal",
+            "model_info": "gemini-2.5-pro",
+            "webhook_token": "system_root"
+        },
+        {
+            "id": "Ajan_Hukuk",
+            "alias": "Avukat",
+            "specialty": "hukuki_analiz",
+            "model_info": "claude-3-opus",
+            "webhook_token": "hx_123"
+        },
+        {
+            "id": "Ajan_Muhendis",
+            "alias": "Yazilimci",
+            "specialty": "yazilim_muhendisligi",
+            "model_info": "gemini-2.5-pro",
+            "webhook_token": "mx_123"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "model": "gemini-3.1-pro-preview",
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "top_k": 40,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain",
+    "thinking_mode": false,
+    "circuit_breaker_threshold": 5,
+    "circuit_breaker_timeout_ms": 30000,
+    "skills": [
+        "google_search.js"
+    ],
+    "efficiency_mode": false,
+    "telegram_bot_token": "",
+    "system_prompt": "test_skıll_ekleme",
+    "api_key": "AQ.Ab8RN6JSQIir6QVpJ5EnHRuxNbHhfSnhFU59lo2MUJVaSWXM4g",
+    "token_limit": 20000
+}
