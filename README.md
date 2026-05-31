@@ -44,7 +44,7 @@ Verileriniz sadece **sizin bilgisayarınızda** kalır. Hiçbir sohbet geçmişi
 | **Verileriniz nerede?** | Şirketin sunucularında | Kendi bilgisayarınızda |
 | **Sohbet geçmişi** | Şirket tarafından okunabilir | Sadece siz görürsünüz |
 | **Dosyalarınız** | Buluta yüklenir | Bilgisayarınızdan çıkmaz |
-| **Aylık ücret** | $20-200/ay | Ücretsiz (açık kaynak) |
+| **Aylık ücret** | $20-200/ay | **$0/ay** ($300 kredi = ~1 yıl ücretsiz) |
 | **İşlem yapabilme** | Sadece sohbet | Dosya, terminal, web, e-posta, PDF... |
 | **Özelleştirme** | Sınırlı | Sınırsız (kendi ajanlarınızı kurun) |
 | **Otonom çalışma** | ❌ | ✅ Zamanlanmış görevler, otonom öğrenme |
@@ -182,6 +182,27 @@ AgentsHUB/
 
 > ⚠️ Gemini 2.0 ve altı sürümler desteklenmez.
 
+### ⚔️ AgentsHUB vs OpenClaw — Açık Kaynak Ajan Platformları
+
+| Kriter | OpenClaw | AgentsHUB |
+|--------|----------|----------|
+| **Arayüz** | Terminal (CLI) | Modern Web Dashboard |
+| **Kurulum** | `npm i -g` + config dosyaları | Çift tıkla → çalışır |
+| **Hedef kitle** | Geliştiriciler | Herkes |
+| **Aylık maliyet** | Model bağımlı ($20-200+) | **$0/ay** ($300 ücretsiz kredi = ~1 yıl) |
+| **Yetenek sayısı** | 51 (doküman tabanlı) | 29 (çalıştırılabilir kod) |
+| **Otonom öğrenme** | ❌ | ✅ Kaizen Engine |
+| **Ajan oluşturma** | Template tabanlı | ✅ Genesis (ajan → ajan doğurma) |
+| **Hafıza sistemi** | LanceDB (tek katman) | 3 katmanlı (RAM + SQLite + Cache) |
+| **Görsel üretme** | ❌ | ✅ Google Imagen |
+| **Gizlilik** | Bulut API'ye bağımlı | %100 yerel, veri dışarı çıkmaz |
+| **Türkçe destek** | ❌ | ✅ Tam Türkçe arayüz |
+| **Uzaktan erişim** | ❌ | ✅ Telegram Bot |
+| **Circuit Breaker** | ❌ | ✅ Otomatik hata yönetimi |
+| **Kurulum süresi** | ~10 dk (terminal bilgisi gerekir) | ~2 dk (çift tıkla) |
+
+> 📖 Detaylı teknik karşılaştırma: [docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
+
 ### 📄 Lisans
 
 MIT — Kişisel ve ticari kullanım serbesttir.
@@ -206,7 +227,7 @@ AgentsHUB is an **open-source Agentic Operating System** that runs entirely on y
 | **Your data** | On company servers | On your computer |
 | **Chat history** | Readable by the company | Only you can see it |
 | **Your files** | Uploaded to the cloud | Never leaves your machine |
-| **Monthly cost** | $20-200/month | Free (open source) |
+| **Monthly cost** | $20-200/month | **$0/month** ($300 free credit = ~1 year free) |
 | **Capabilities** | Chat only | Files, terminal, web, email, PDF... |
 | **Customization** | Limited | Unlimited (build your own agents) |
 | **Autonomous work** | ❌ | ✅ Scheduled tasks, self-learning |
@@ -342,6 +363,26 @@ AgentsHUB/
 | Gemini 3.x Flash/Pro | Next-generation models |
 
 > ⚠️ Gemini 2.0 and below are not supported.
+
+### ⚔️ AgentsHUB vs OpenClaw — Open Source Agent Platforms
+
+| Criteria | OpenClaw | AgentsHUB |
+|----------|----------|-----------|
+| **Interface** | Terminal (CLI) | Modern Web Dashboard |
+| **Installation** | `npm i -g` + config files | Double-click → runs |
+| **Target audience** | Developers | Everyone |
+| **Monthly cost** | Model-dependent ($20-200+) | **$0/month** ($300 free credit = ~1 year) |
+| **Skill count** | 51 (document-based) | 29 (executable code) |
+| **Autonomous learning** | ❌ | ✅ Kaizen Engine |
+| **Agent creation** | Template-based | ✅ Genesis (agent → spawns agents) |
+| **Memory system** | LanceDB (single layer) | 3-layer (RAM + SQLite + Cache) |
+| **Image generation** | ❌ | ✅ Google Imagen |
+| **Privacy** | Cloud API dependent | 100% local, data never leaves |
+| **Remote access** | ❌ | ✅ Telegram Bot |
+| **Circuit Breaker** | ❌ | ✅ Automatic fault tolerance |
+| **Setup time** | ~10 min (terminal required) | ~2 min (double-click) |
+
+> 📖 Detailed technical comparison: [docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
 
 ### 📄 License
 
