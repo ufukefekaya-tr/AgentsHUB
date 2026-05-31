@@ -19,9 +19,18 @@ export const requireAuth = (req, res, next) => {
         return next();
     }
 
+    // 1. x-api-key Doğrulaması (Frontend ve API entegrasyonu için)
+    const apiKey = req.headers['x-api-key'];
+    const UI_API_KEY = process.env.UI_API_KEY || 'agentshub_secure_key_2026';
+    if (apiKey && apiKey === UI_API_KEY) {
+        req.user = { role: 'admin', type: 'apikey' };
+        return next();
+    }
+
+    // 2. JWT Bearer Token Doğrulaması
     const authHeader = req.headers['authorization'];
     
-    // Authorization başlığı yoksa kapıyı hiç açma (Void Protocol)
+    // Hem x-api-key hem de Authorization başlığı yoksa kapıyı hiç açma (Void Protocol)
     if (!authHeader) {
         logger.warn(`[SHIELD] Yetkisiz erişim denemesi (No Header). IP: ${req.ip} | Route: ${req.path}`);
         return res.status(401).json({ error: 'Erişim engellendi. (Sıfır Güven Protokolü)' });

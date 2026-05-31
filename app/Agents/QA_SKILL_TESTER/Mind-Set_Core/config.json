@@ -8,6 +8,7 @@
     "thinking_mode": false,
     "circuit_breaker_threshold": 5,
     "circuit_breaker_timeout_ms": 30000,
+    "apiKey": "AQ.Ab8RN6K_eznOrNOZwn9MvQDdspcejhGazdFWE6nGP32Ky17ZHg",
     "skills": [
         "byterover.js",
         "calculator.js",

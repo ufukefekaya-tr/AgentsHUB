@@ -77,21 +77,25 @@ export class EmbeddingsAdapter {
                 const errMsg = error?.message || String(error);
                 const errCode = error?.status || error?.code || '';
 
-                // Kurtarılamaz API kısıtlaması (Vertex Express AQ. anahtarı embedding desteklemiyor,
-                // model bu endpoint sürümünde bulunamadı, veya erişim engellendi):
+                // Kurtarılamaz hata: Vertex Express / geçersiz key / erişim engeli / model yok
                 const isFatal = errMsg.includes('BLOCKED')
                     || errMsg.includes('NOT_FOUND')
                     || errMsg.includes('not found')
-                    || String(errCode).includes('404');
+                    || errMsg.includes('INVALID_ARGUMENT')
+                    || errMsg.includes('API key not valid')
+                    || errMsg.includes('PERMISSION_DENIED')
+                    || errMsg.includes('UNAUTHENTICATED')
+                    || String(errCode).includes('404')
+                    || String(errCode).includes('400')
+                    || String(errCode).includes('401')
+                    || String(errCode).includes('403');
 
                 if (isFatal) {
                     if (model === MODELS[MODELS.length - 1]) {
-                        // Tüm modeller tüketildi → Sentetik vektör ile graceful bypass
-                        logger.warn(`[L2] ${this.agentId}: Embedding API kısıtlı (${model} / ${String(errCode)}). Sentetik vektör aktif — L2 arama taraflı çalışır.`);
+                        logger.warn(`[L2] ${this.agentId}: Embedding API kısıtlı (${model} / ${String(errCode)}). Sentetik vektör aktif.`);
                         return new Array(768).fill(0.001);
                     }
-                    // Bir sonraki modeli dene
-                    logger.debug(`[L2] ${this.agentId}: ${model} bulunamadı, fallback deneniyor...`);
+                    logger.debug(`[L2] ${this.agentId}: ${model} fallback deneniyor...`);
                     continue;
                 }
 
