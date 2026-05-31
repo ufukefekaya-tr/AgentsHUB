@@ -42,28 +42,29 @@ Tek bir chatbot değil — **ordu gibi çalışan çoklu ajan sistemi.**
 
 ### ⚡ Hızlı Başlangıç
 
-**Gereksinimler:** Node.js v18+, [Google AI Studio API Key](https://aistudio.google.com)
+**Tek ihtiyacınız:** [Google AI Studio API Key](https://aistudio.google.com) (ücretsiz)
 
-```bash
-# 1. Klonla
-git clone https://github.com/ufukefekaya-tr/AgentsHUB.git
-cd AgentsHUB
+#### Yöntem 1: Çift Tıkla Çalıştır (Önerilen)
 
-# 2. Bağımlılıkları kur
-cd app && npm install
-
-# 3. Ortam değişkenlerini ayarla
-cp .env.example .env
-# .env dosyasını düzenle
-
-# 4. Başlat
-node src/gateway/ui_server.js
+```
+1. Bu repoyu indir (Code → Download ZIP) veya klonla
+2. START.bat dosyasına çift tıkla
+3. Gerisini sistem halleder (Node.js indirme, bağımlılıklar, başlatma)
+4. Tarayıcıda http://localhost:3434 açılır
+5. API key'ini yapıştır → kullanmaya başla
 ```
 
-**Alternatif: Otomatik Kurulum**
+> **Not:** İlk çalıştırmada Node.js ve bağımlılıklar otomatik indirilir (~2 dk). Sonraki açılışlar anlık.
+
+#### Yöntem 2: Setup Programı (.exe)
+
+[agentshub.com.tr](https://agentshub.com.tr/i_ndirme_sayfas/) adresinden **AgentsHUB-2.0.0-beta-Setup.exe** dosyasını indirip çalıştırın. Her şey dahil — Node.js, bağımlılıklar, masaüstü kısayolu.
+
+#### Yöntem 3: PowerShell (Geliştiriciler İçin)
 
 ```powershell
-# PowerShell'i yönetici olarak açın
+git clone https://github.com/ufukefekaya-tr/AgentsHUB.git
+cd AgentsHUB
 Set-ExecutionPolicy Bypass -Scope Process -Force
 .\INSTALL.ps1
 ```
