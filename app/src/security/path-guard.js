@@ -110,6 +110,7 @@ export function validateAgentPath(agentId, targetPath, operation = 'read') {
             agentWorkspace,
             path.join(appDir, 'temp'),
             path.join(appDir, 'output'),
+            path.join(appDir, 'Workspace'),
         ];
         
         const isAllowed = allowedWriteDirs.some(dir => isPathInside(dir, resolvedPath));

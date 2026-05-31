@@ -119,7 +119,7 @@ const TEST_SCENARIOS = [
         skill: 'calculator.js',
         desc: 'Matematiksel ReAct motor doğrulaması',
         message: 'calculator yeteneğiyle 9876 * 5432 işlemini yap ve sonucu bana söyle.',
-        validate: (r) => /53646432|53\.\d{6,}/.test(r)
+        validate: (r) => /53[.,]?646[.,]?432/.test(r)
     },
     {
         id: 'TEST-03-WEATHER',
@@ -153,7 +153,7 @@ const TEST_SCENARIOS = [
         id: 'TEST-07-DOSYA',
         skill: 'write_file.js',
         desc: 'Dosya yazma ve İzin Kapısı testi',
-        message: 'write_file yeteneğini kullanarak C:\\AgentsHUB\\app\\Workspace\\qa_test_file.txt dizinine "QA_SISTEM_OPERASYONEL" yaz.',
+        message: 'write_file yeteneğini kullanarak Workspace/qa_test_file.txt dizinine "QA_SISTEM_OPERASYONEL" yaz.',
         validate: (r) => /yazıldı|oluşturuldu|ok|başarı|txt/i.test(r)
     },
     {
