@@ -66,3 +66,37 @@
 - **Yeni Kural:** `byterover` aracını `action:execute` parametresiyle, özellikle sistem dizinleri (örn. `C:\Windows`) üzerinde kullanma isteği geldiğinde, güvenlik politikaları gereği bu tür doğrudan komut çalıştırmanın reddedileceğini kullanıcıya bildir ve alternatif, güvenli `byterover` aksiyonlarını (örn. `list`) öner. Asla Sistem Mimarı tarafından reddedileceği bilinen bir işlemi deneme.
 - **Skor:** 65
   Skor: 65/100
+
+- [2026-05-31T11:49:03.397Z] KAIZEN DIAGNOSIS:
+  Kök Neden: Kognitif Analiz Sonucu
+  Alınan Ders: - **Teşhis:** Kullanıcı isteği doğru anlaşıldı ve `browser_agent` aracı başarıyla kullanılarak sayfa başlığı doğru bir şekilde alındı. İşlem hatasız tamamlandı.
+- **Yeni Kural:** Kullanıcıdan gelen açık tool kullanım talimatlarını doğru parametrelerle ve eksiksiz bir şekilde yerine getirmeye devam et.
+- **Skor:** 100
+  Skor: 100/100
+
+- [2026-05-31T11:51:56.348Z] KAIZEN DIAGNOSIS:
+  Kök Neden: Kognitif Analiz Sonucu
+  Alınan Ders: **Teşhis:** Ajan, aynı bilgiyi (CPU ve RAM kullanımı) almak için `system_monitor` aracını gereksiz yere iki kez çağırdı. Tek bir çağrı yeterliydi. Bu durum token israfına ve gereksiz gecikmeye yol açmıştır.
+
+**Yeni Kural:** `system_monitor` aracını CPU ve RAM kullanımını aynı anda almak için tek bir çağrıda kullan. Aynı bilgiyi almak için aracı birden fazla çağırma.
+
+**Skor:** 85
+  Skor: 85/100
+
+- [2026-05-31T11:54:22.676Z] KAIZEN DIAGNOSIS:
+  Kök Neden: Kritik Yetenek/Tool Hatasi (Exception)
+  Alınan Ders: **Teşhis:** `web_scraper` aracı, hedef sunucudan kaynaklanan harici bir "HTTP 503: Service Temporarily Unavailable" hatası nedeniyle başarısız oldu. Ajanın tool çağrısı doğruydu ancak dış sistemin erişilemezliği nedeniyle işlem tamamlanamadı.
+
+**Yeni Kural:** Harici bir servisten kaynaklanan 5xx HTTP hatası alındığında, hatanın *kendi yeteneğinden değil*, hedef sunucudan kaynaklandığını *vurgula* ve kullanıcıya *net bir şekilde* bekleyip tekrar deneme veya alternatif bir işlem önerme seçeneklerini belirt. (Ajan bu etkileşimde iyi bir iş çıkardı, ancak bu kural gelecekteki benzer durumlar için bir pekiştirme niteliğindedir.)
+
+**Skor:** 85
+  Skor: 85/100
+
+- [2026-05-31T11:56:51.163Z] KAIZEN DIAGNOSIS:
+  Kök Neden: Kognitif Analiz Sonucu
+  Alınan Ders: **Teşhis:** Ajan, kullanıcının açıkça talep ettiği `mcp_bridge` aracını çağıramadı çünkü bu yeteneğe sahip değildi. Ajan durumu doğru bir şekilde tespit edip kullanıcıyı bilgilendirse de, kullanıcının temel amacını (MCP araçlarını listeleme) daha geniş bir perspektiften değerlendirerek mevcut yetenekleri dahilinde alternatif bir çözüm veya bilgi sunma fırsatını değerlendirmedi.
+
+**Yeni Kural:** Kullanıcı belirli bir aracı kullanmayı talep ettiğinde ve ajan bu araca sahip değilse, ajanın sadece yetenek eksikliğini belirtmekle kalmayıp, kullanıcının asıl amacını anlamaya çalışarak sahip olduğu diğer yeteneklerle (örneğin, farklı bir araçla benzer bir listeleme yapma veya ilgili dokümantasyona yönlendirme) alternatif çözümler sunması gerekmektedir. Eğer hiçbir alternatif yoksa, Sistem Mimarı'na yönlendirme yapılmalıdır.
+
+**Skor:** 65
+  Skor: 65/100

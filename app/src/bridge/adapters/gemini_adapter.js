@@ -7,21 +7,24 @@ export class GeminiAdapter extends BaseAdapter {
     constructor(apiKey, config) {
         super(apiKey, config);
         
-        const cleanKey = this.apiKey ? this.apiKey.trim() : '';
+        let cleanKey = this.apiKey ? this.apiKey.trim() : '';
+        if (!cleanKey) {
+            cleanKey = (process.env.GEMINI_API_KEY || '').trim();
+        }
         const initParams = { apiKey: cleanKey };
         
         // M-05: Vertex AI Otonom Tespit
         // DİKKAT: AQ. prefix = Vertex AI Express API Key. JS SDK'sında bu anahtarlar
         // 'vertexai' konfigürüasyon objesi GEREKTİRİR ki 'generativelanguage.googleapis.com' 
         // yerine 'aiplatform.googleapis.com' endpoint'ine gitsin!
-        const hasExplicitVertexProject = process.env.VERTEX_PROJECT || (this.config && this.config.vertex_project) || '';
+        const hasExplicitVertexProject = process.env.VERTEX_PROJECT || process.env.VERTEX_PROJECT_ID || (this.config && this.config.vertex_project) || '';
         const isExpressKey = cleanKey.startsWith('AQ');
         
         if (hasExplicitVertexProject || isExpressKey) {
             // Eger AQ anahtari varsa ama ajan config icinde vertex_project tanimlanmamissa failsafe kullan:
             const safeProject = (this.config && this.config.vertex_project) 
                 ? this.config.vertex_project 
-                : (process.env.VERTEX_PROJECT || "873195891345");
+                : (process.env.VERTEX_PROJECT || process.env.VERTEX_PROJECT_ID || "873195891345");
                 
             initParams.vertexai = {
                 project: safeProject,
@@ -46,8 +49,10 @@ export class GeminiAdapter extends BaseAdapter {
 
         // BUG #3 FIX: Gemini API'de thinking_mode + functionCalling aynı anda desteklenmez.
         // Tool listesi varsa thinking'i otomatik kapat; tool yoksa thinking'i aç.
+        // Failsafe: thinking_mode yalnızca Pro veya Deneysel modeller tarafından desteklenir (Flash modellerinde 400 hatası vermemesi için).
         const hasTools = threadMetadata.tools && threadMetadata.tools.length > 0 && !threadMetadata.cachedContentName;
-        if (this.config.thinking_mode === true && !hasTools) {
+        const modelSupportsThinking = this.config.model && (this.config.model.includes('pro') || this.config.model.includes('thinking'));
+        if (this.config.thinking_mode === true && !hasTools && modelSupportsThinking) {
             config.thinkingConfig = { includeThoughts: true };
         }
 

@@ -1,5 +1,5 @@
-﻿{
-    "model": "gemini-3.1-pro-preview",
+{
+    "model": "gemini-2.5-flash",
     "temperature": 0.7,
     "top_p": 0.95,
     "top_k": 40,
@@ -35,6 +35,7 @@
     "efficiency_mode": false,
     "telegram_bot_token": "",
     "system_prompt": "test",
-    "api_key": "AQ.Ab8RN6JSQIir6QVpJ5EnHRuxNbHhfSnhFU59lo2MUJVaSWXM4g",
+    "api_key": "AQ.Ab8RN6K_eznOrNOZwn9MvQDdspcejhGazdFWE6nGP32Ky17ZHg",
+    "vertex_project": "873195891345",
     "token_limit": 20000
 }
