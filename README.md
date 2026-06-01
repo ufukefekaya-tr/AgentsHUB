@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/images/banner.png" alt="AgentsHUB Banner" width="100%">
+
 # 🤖 AgentsHUB — Agentic OS
 
 **Bilgisayarınızda çalışan, otonom yapay zeka ajan platformu.**
@@ -8,24 +10,54 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-v18+-brightgreen)](https://nodejs.org)
-[![Version](https://img.shields.io/badge/Version-2.0.0--beta-blue)]()
+[![Version](https://img.shields.io/badge/Version-2.0.0--beta-blue)](https://github.com/ufukefekaya-tr/AgentsHUB/releases)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-lightgrey)]()
 [![Skills](https://img.shields.io/badge/Skills-29-orange)]()
+[![Website](https://img.shields.io/badge/Website-agentshub.com.tr-8A2BE2)](https://agentshub.com.tr)
 
 [🇹🇷 Türkçe](#-türkçe) • [🇬🇧 English](#-english)
 
 ---
 
-### 💰 1 Yıl Ücretsiz AI Kullanımı
-
-Google Cloud Vertex AI ile yeni kullanıcılar **$300 ücretsiz kredi** alır.
-Bu kredi, standart bir kullanıcının **yaklaşık 1 yıllık AI kullanımına** karşılık gelir.
-Kredi bitene kadar hiçbir ödeme yapmazsınız.
-
-> 📖 Detaylı bilgi ve kredi aktivasyonu için: [chat.agentshub.com.tr](https://chat.agentshub.com.tr)
-> Atlas'a "Vertex AI kredisi nasıl alınır?" diye sorun — adım adım anlatır.
+### ⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın! / Star us if you find this useful!
 
 </div>
+
+---
+
+## 📑 İçindekiler / Table of Contents
+
+<details>
+<summary>🇹🇷 Türkçe</summary>
+
+- [AgentsHUB Nedir?](#agentshub-nedir)
+- [Neden AgentsHUB?](#-neden-agentshub)
+- [AgentsHUB vs OpenClaw](#️-agentshub-vs-openclaw--açık-kaynak-ajan-platformları)
+- [Özellikler](#-özellikler)
+- [Ekran Görüntüleri](#-ekran-görüntüleri)
+- [Ücretsiz AI Kullanımı](#-ücretsiz-ai-kullanımı--300-google-cloud-kredisi)
+- [Hızlı Başlangıç](#-hızlı-başlangıç)
+- [Mimari](#️-mimari)
+- [Desteklenen Modeller](#-desteklenen-modeller)
+- [Katkıda Bulunma](#-katkıda-bulunma)
+
+</details>
+
+<details>
+<summary>🇬🇧 English</summary>
+
+- [What is AgentsHUB?](#what-is-agentshub)
+- [Why AgentsHUB?](#-why-agentshub)
+- [AgentsHUB vs OpenClaw](#️-agentshub-vs-openclaw--open-source-agent-platforms)
+- [Features](#-features)
+- [Screenshots](#-screenshots)
+- [Free AI Usage](#-free-ai-usage--300-google-cloud-credit)
+- [Quick Start](#-quick-start)
+- [Architecture](#️-architecture)
+- [Supported Models](#-supported-models)
+- [Contributing](#-contributing)
+
+</details>
 
 ---
 
@@ -125,6 +157,16 @@ Ajanlarınız doğuştan şu yeteneklere sahip:
 - Maliyet analizi ve raporlama
 - API çağrı istatistikleri
 
+### 📸 Ekran Görüntüleri
+
+<div align="center">
+
+<img src="docs/images/dashboard-screenshot.png" alt="AgentsHUB Dashboard" width="90%">
+
+*AgentsHUB Dashboard — Ana kontrol paneli, ajan yönetimi, sohbet ve sistem izleme*
+
+</div>
+
 ### 💰 Ücretsiz AI Kullanımı — $300 Google Cloud Kredisi
 
 AgentsHUB, **Google Gemini** modellerini kullanır. İki seçeneğiniz var:
@@ -203,6 +245,14 @@ AgentsHUB/
 
 > ⚠️ Gemini 2.0 ve altı sürümler desteklenmez.
 
+### 🤝 Katkıda Bulunma
+
+Katkılarınızı bekliyoruz! Detaylı rehber için [CONTRIBUTING.md](CONTRIBUTING.md) dosyasına göz atın.
+
+- 🐛 [Bug Raporu Aç](../../issues/new?template=bug_report.md)
+- ✨ [Özellik Talep Et](../../issues/new?template=feature_request.md)
+- 📖 [Güvenlik Politikası](SECURITY.md)
+- 📜 [Davranış Kuralları](CODE_OF_CONDUCT.md)
 
 ### 📄 Lisans
 
@@ -210,6 +260,9 @@ MIT — Kişisel ve ticari kullanım serbesttir.
 
 **EHARTE Elektrikli Hava Araçları Teknolojileri Ltd. Şti.**
 İTÜ Çekirdek + Mersin Teknopark
+
+📧 İletişim: info@agentshub.com.tr
+🌐 Web: [agentshub.com.tr](https://agentshub.com.tr)
 
 ---
 
@@ -308,6 +361,16 @@ Your agents come equipped with powerful capabilities out of the box:
 - Cost analysis and reporting
 - API call statistics
 
+### 📸 Screenshots
+
+<div align="center">
+
+<img src="docs/images/dashboard-screenshot.png" alt="AgentsHUB Dashboard" width="90%">
+
+*AgentsHUB Dashboard — Main control panel, agent management, chat, and system monitoring*
+
+</div>
+
 ### 💰 Free AI Usage — $300 Google Cloud Credit
 
 AgentsHUB uses **Google Gemini** models. You have two options:
@@ -386,6 +449,14 @@ AgentsHUB/
 
 > ⚠️ Gemini 2.0 and below are not supported.
 
+### 🤝 Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+- 🐛 [Report a Bug](../../issues/new?template=bug_report.md)
+- ✨ [Request a Feature](../../issues/new?template=feature_request.md)
+- 📖 [Security Policy](SECURITY.md)
+- 📜 [Code of Conduct](CODE_OF_CONDUCT.md)
 
 ### 📄 License
 
@@ -393,3 +464,6 @@ MIT — Free for personal and commercial use.
 
 **EHARTE Elektrikli Hava Araçları Teknolojileri Ltd. Şti.**
 ITU Cekirdek Incubation + Mersin Technopark
+
+📧 Contact: info@agentshub.com.tr
+🌐 Web: [agentshub.com.tr](https://agentshub.com.tr)
