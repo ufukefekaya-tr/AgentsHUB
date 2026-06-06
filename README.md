@@ -1,469 +1,335 @@
-<div align="center">
+# AgentsHUB
 
-<img src="docs/images/banner.png" alt="AgentsHUB Banner" width="100%">
-
-# 🤖 AgentsHUB — Agentic OS
-
-**Bilgisayarınızda çalışan, otonom yapay zeka ajan platformu.**
-
-*Your personal AI agent platform that runs entirely on your computer.*
+> **AgentsHUB is a local-first, open-source Agentic OS that orchestrates autonomous AI agents on your machine — no cloud dependency, no vendor lock-in.** Built on Gemini's free tier, it gives developers and SMBs a multi-agent runtime that runs entirely under their control, with native Turkish language support and MIT licensing.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-v18+-brightgreen)](https://nodejs.org)
-[![Version](https://img.shields.io/badge/Version-2.0.0--beta-blue)](https://github.com/ufukefekaya-tr/AgentsHUB/releases)
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-lightgrey)]()
-[![Skills](https://img.shields.io/badge/Skills-29-orange)]()
-[![Website](https://img.shields.io/badge/Website-agentshub.com.tr-8A2BE2)](https://agentshub.com.tr)
-
-[🇹🇷 Türkçe](#-türkçe) • [🇬🇧 English](#-english)
+[![GitHub Stars](https://img.shields.io/github/stars/ufukefekaya-tr/AgentsHUB?style=social)](https://github.com/ufukefekaya-tr/AgentsHUB)
+[![Version](https://img.shields.io/badge/version-2.0.0--beta-blue)](https://github.com/ufukefekaya-tr/AgentsHUB/releases)
+[![Language](https://img.shields.io/badge/lang-TR%20%7C%20EN-orange)]()
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://python.org)
 
 ---
 
-### ⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın! / Star us if you find this useful!
+<!-- DEMO GIF -->
+<p align="center">
+  <img src="assets/demo.gif" alt="AgentsHUB terminal demo — agent spawning, task execution, multi-agent collaboration in 60 seconds" width="800">
+</p>
+<p align="center"><em>60-second muted demo: spawn agents, assign tasks, watch them collaborate — all local, all yours.</em></p>
 
-</div>
+<!-- TODO: Record with asciinema, convert via agg. Storyboard below. -->
 
----
-
-## 📑 İçindekiler / Table of Contents
-
-<details>
-<summary>🇹🇷 Türkçe</summary>
-
-- [AgentsHUB Nedir?](#agentshub-nedir)
-- [Neden AgentsHUB?](#-neden-agentshub)
-- [AgentsHUB vs OpenClaw](#️-agentshub-vs-openclaw--açık-kaynak-ajan-platformları)
-- [Özellikler](#-özellikler)
-- [Ekran Görüntüleri](#-ekran-görüntüleri)
-- [Ücretsiz AI Kullanımı](#-ücretsiz-ai-kullanımı--300-google-cloud-kredisi)
-- [Hızlı Başlangıç](#-hızlı-başlangıç)
-- [Mimari](#️-mimari)
-- [Desteklenen Modeller](#-desteklenen-modeller)
-- [Katkıda Bulunma](#-katkıda-bulunma)
-
-</details>
-
-<details>
-<summary>🇬🇧 English</summary>
-
-- [What is AgentsHUB?](#what-is-agentshub)
-- [Why AgentsHUB?](#-why-agentshub)
-- [AgentsHUB vs OpenClaw](#️-agentshub-vs-openclaw--open-source-agent-platforms)
-- [Features](#-features)
-- [Screenshots](#-screenshots)
-- [Free AI Usage](#-free-ai-usage--300-google-cloud-credit)
-- [Quick Start](#-quick-start)
-- [Architecture](#️-architecture)
-- [Supported Models](#-supported-models)
-- [Contributing](#-contributing)
-
-</details>
+<!--
+DEMO GIF STORYBOARD (60-90 seconds, muted, terminal recording)
+================================================================
+[0-5s]   Title card: "AgentsHUB — Your Local Agentic OS" (clean terminal, cursor blink)
+[5-12s]  $ agentshub init → project scaffold created (3 files appear)
+[12-20s] $ agentshub spawn researcher --model gemini-flash → "Agent 'researcher' ready"
+[20-30s] $ agentshub spawn writer --model gemini-flash → "Agent 'writer' ready"
+          $ agentshub team create content-pipeline --agents researcher,writer
+[30-45s] $ agentshub run content-pipeline --task "Analyze top 5 competitors and draft a blog post"
+          → Real-time streaming: researcher fetches data, passes context to writer
+          → Writer produces structured markdown output
+[45-55s] Terminal splits: left=agent logs (tool calls, reasoning), right=final output
+[55-65s] $ agentshub cost → "Session total: $0.00 (Gemini free tier)" ← money shot
+[65-75s] $ agentshub export --format markdown → saved to ./output/blog-post.md
+[75-85s] Show file content (clean, production-ready output)
+[85-90s] End card: "MIT Licensed | Star us on GitHub"
+================================================================
+-->
 
 ---
 
-## 🇹🇷 Türkçe
+## Why AgentsHUB?
 
-### AgentsHUB Nedir?
+| Problem | How AgentsHUB solves it |
+|---------|------------------------|
+| Cloud-based agent platforms lock you in, read your data, and charge per token | Runs 100% on your machine. Your data never leaves your disk. Zero recurring cloud fees. |
+| Existing frameworks (CrewAI, LangGraph) require heavy boilerplate and vendor SDKs | 3-command setup. Single CLI. No mandatory cloud accounts. |
+| LLM API costs spiral out of control ($50-200/month for basic agent workflows) | Built on Gemini Flash free tier — real multi-agent workflows at $0/month for most use cases. |
+| No Turkish language support in any major agent framework | Native Turkish prompts, tool descriptions, and error messages. Bilingual by design. |
+| Multi-agent coordination is complex — most devs give up before shipping | Opinionated defaults: spawn agents, assign roles, let the orchestrator handle coordination. Ship in hours, not weeks. |
 
-AgentsHUB, bilgisayarınıza kurabileceğiniz **açık kaynak bir yapay zeka ajan işletim sistemidir (Agentic OS)**. Tek bir chatbot değil — dosya okuyan, yazan, internet araştırması yapan, ekran görüntüsü alan, Python kodu çalıştıran, e-posta gönderen, PDF analiz eden ve çok daha fazlasını **tamamen otonom** olarak yapabilen bir AI asistan ordusu.
+---
 
-Verileriniz sadece **sizin bilgisayarınızda** kalır. Hiçbir sohbet geçmişi, dosya veya kişisel bilgi dış sunuculara gönderilmez. AgentsHUB, AI'ın gücünü **gizliliğinizden ödün vermeden** kullanmanızı sağlar.
+## Quick Start
 
-### 🔒 Neden AgentsHUB?
+### Prerequisites
+- Python 3.10+
+- A Google AI Studio API key ([free, no credit card](https://aistudio.google.com/apikey))
 
-| | Bulut Tabanlı AI Servisleri | AgentsHUB |
-|---|---|---|
-| **Verileriniz nerede?** | Şirketin sunucularında | Kendi bilgisayarınızda |
-| **Sohbet geçmişi** | Şirket tarafından okunabilir | Sadece siz görürsünüz |
-| **Dosyalarınız** | Buluta yüklenir | Bilgisayarınızdan çıkmaz |
-| **Aylık ücret** | $20-200/ay | **$0/ay** ($300 kredi = ~1 yıl ücretsiz) |
-| **İşlem yapabilme** | Sadece sohbet | Dosya, terminal, web, e-posta, PDF... |
-| **Özelleştirme** | Sınırlı | Sınırsız (kendi ajanlarınızı kurun) |
-| **Otonom çalışma** | ❌ | ✅ Zamanlanmış görevler, otonom öğrenme |
+### 3 Steps to Your First Agent Team
 
-### ⚔️ AgentsHUB vs OpenClaw — Açık Kaynak Ajan Platformları
+```bash
+# 1. Install
+pip install agentshub
 
-| Kriter | OpenClaw | AgentsHUB |
-|--------|----------|----------|
-| **Arayüz** | Terminal (CLI) | Modern Web Dashboard |
-| **Kurulum** | `npm i -g` + config dosyaları | Çift tıkla → çalışır |
-| **Hedef kitle** | Geliştiriciler | Herkes |
-| **Aylık maliyet** | Model bağımlı ($20-200+) | **$0/ay** ($300 ücretsiz kredi = ~1 yıl) |
-| **Yetenek sayısı** | 51 (doküman tabanlı) | 29 (çalıştırılabilir sandbox kodu) |
-| **Model desteği** | 15+ provider | Google Gemini (AI Studio + Vertex AI) |
-| **Kanal desteği** | 12+ kanal (Discord, Slack, Telegram...) | Web Dashboard + Telegram |
-| **Otonom öğrenme** | ❌ | ✅ Kaizen Engine (otomatik davranış iyileştirme) |
-| **Ajan doğurma** | Template tabanlı | ✅ Genesis (ajan → yeni ajan oluşturur) |
-| **Hafıza sistemi** | LanceDB (tek katman) | 3 katmanlı (RAM + SQLite/Vektör + Google Cache) |
-| **Görsel üretme** | ❌ | ✅ Google Imagen entegrasyonu |
-| **Türkçe arayüz** | ❌ | ✅ Tam Türkçe |
-| **Circuit Breaker** | ❌ | ✅ Otomatik hata yönetimi ve devre kesici |
-| **Kurulum süresi** | ~10 dk (terminal bilgisi gerekir) | ~2 dk (çift tıkla veya setup.exe) |
+# 2. Configure (one-time)
+agentshub config set --api-key YOUR_GEMINI_API_KEY
 
-> 📖 Detaylı teknik karşılaştırma: [OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
-
-### ✨ Özellikler
-
-#### 🧠 29 Yerleşik Yetenek (Skill)
-Ajanlarınız doğuştan şu yeteneklere sahip:
-
-| Kategori | Yetenekler |
-|----------|-----------|
-| 📁 **Dosya İşlemleri** | Dosya okuma/yazma, dizin tarama, dosya yönetimi |
-| 🌐 **Web & Arama** | Google, DuckDuckGo, Brave, Tavily ile arama |
-| 🖥️ **Terminal** | Komut satırı komutları çalıştırma |
-| 🐍 **Python** | Python script yazıp çalıştırma |
-| 📊 **Excel & PDF** | Tablo analizi, PDF metin çıkarma |
-| 🎨 **Görsel Üretme** | Google Imagen ile AI görsel oluşturma |
-| 📸 **Ekran Görüntüsü** | Otomatik ekran yakalama |
-| 🌍 **Web Gezgini** | Headless browser ile web sayfası gezme |
-| 📧 **E-posta** | E-posta gönderme ve okuma |
-| 🔗 **GitHub** | Repo yönetimi, commit, PR oluşturma |
-| 📋 **Pano** | Sistem panosunu okuma/yazma |
-| ⏰ **Zamanlayıcı** | Cron ile zamanlanmış otonom görevler |
-| 🛡️ **Sistem İzleme** | CPU, RAM, disk kullanımı takibi |
-| 🤖 **MCP Bridge** | Model Context Protocol entegrasyonu |
-
-#### 🧬 Otonom Evrim
-- **Kaizen Engine** — Ajanlar her sohbetten öğrenir ve davranışlarını otonom olarak iyileştirir
-- **Genesis** — Bir ajan, ihtiyaç duyduğunda yeni ajanlar oluşturabilir
-- **Skill Marketplace** — Yeni yetenekleri tek tıkla keşfet ve kur
-
-#### 🔐 Gizlilik ve Güvenlik
-- Tüm veriler **yerel bilgisayarınızda** kalır — hiçbir şey buluta gönderilmez
-- Sohbet geçmişiniz **şifreli SQLite** veritabanında saklanır
-- **CyberShield** — AI destekli girdi sanitizasyonu
-- **Path Guard** — Sistem dosyalarına yetkisiz erişim engeli
-- **Sandbox Runner** — Yetenekler izole ortamda çalışır
-- **Circuit Breaker** — Hata durumunda otomatik devre kesici
-
-#### 💬 Çoklu Ajan Sistemi
-- Sınırsız sayıda bağımsız ajan oluşturun
-- Her ajanın kendine özel DNA'sı, kuralları ve yetenekleri
-- Ajanlar arası **sinyal sistemi** ile iletişim
-- Her ajanın ayrı sohbet geçmişi ve hafızası
-
-#### 📱 Uzaktan Erişim
-- **Telegram Bot** entegrasyonu — telefonunuzdan ajanlarınıza komut gönderin
-- Evde bilgisayarı açık bırakın, ofisten Telegram üzerinden görev verin
-
-#### 🧠 3 Katmanlı Hafıza Sistemi
-- **L1** — RAM: Anlık sohbet bağlamı
-- **L2** — SQLite + Vektör: Uzun vadeli hafıza, benzer deneyimleri hatırlama
-- **L3** — Google Cache: API yanıt önbellekleme, token tasarrufu
-
-#### 📊 Gerçek Zamanlı Telemetri
-- Canlı token kullanım takibi
-- Maliyet analizi ve raporlama
-- API çağrı istatistikleri
-
-### 📸 Ekran Görüntüleri
-
-<div align="center">
-
-<img src="docs/images/dashboard-screenshot.png" alt="AgentsHUB Dashboard" width="90%">
-
-*AgentsHUB Dashboard — Ana kontrol paneli, ajan yönetimi, sohbet ve sistem izleme*
-
-</div>
-
-### 💰 Ücretsiz AI Kullanımı — $300 Google Cloud Kredisi
-
-AgentsHUB, **Google Gemini** modellerini kullanır. İki seçeneğiniz var:
-
-1. **Google AI Studio** (Ücretsiz katman) — Sınırlı ama başlamak için yeterli
-2. **Google Cloud Vertex AI** — Yeni hesaplara **$300 ücretsiz kredi** verilir
-
-> **$300 kredi = standart bir kullanıcı için yaklaşık 1 yıl AI kullanımı.**
-> Günde ortalama 50-100 mesaj gönderseniz bile krediniz 10-12 ay dayanır.
-> Kredi bitene kadar kredi kartınızdan **hiçbir ücret alınmaz**.
-
-📖 Detaylı kredi aktivasyon rehberi: [chat.agentshub.com.tr](https://chat.agentshub.com.tr)
-
-### ⚡ Hızlı Başlangıç
-
-**Tek ihtiyacınız:** [Google AI Studio API Key](https://aistudio.google.com) (ücretsiz)
-
-#### Yöntem 1: Çift Tıkla Çalıştır (Önerilen)
-
-```
-1. Bu repoyu indir (Code → Download ZIP) veya klonla
-2. START.bat dosyasına çift tıkla
-3. Gerisini sistem halleder (Node.js indirme, bağımlılıklar, başlatma)
-4. Tarayıcıda http://localhost:3434 açılır
-5. Ayarlardan API key'ini yapıştır → ajan oluştur → kullanmaya başla
+# 3. Run your first multi-agent task
+agentshub run --task "Research Python async best practices and write a summary"
 ```
 
-> **Not:** İlk çalıştırmada Node.js ve bağımlılıklar otomatik indirilir (~2 dk). Sonraki açılışlar anlık.
+Or clone and run from source:
 
-#### Yöntem 2: Setup Programı (.exe) — Sıfır Bağımlılık
-
-[agentshub.com.tr](https://agentshub.com.tr/i_ndirme_sayfas/) adresinden **AgentsHUB-2.0.0-beta-Setup.exe** (49 MB) dosyasını indirip çalıştırın.
-
-İçinde her şey var: Node.js, tüm bağımlılıklar, 29 yetenek, masaüstü kısayolu. Ekstra bir şey indirmenize gerek yok.
-
-#### Yöntem 3: PowerShell (Geliştiriciler İçin)
-
-```powershell
+```bash
 git clone https://github.com/ufukefekaya-tr/AgentsHUB.git
 cd AgentsHUB
-Set-ExecutionPolicy Bypass -Scope Process -Force
-.\INSTALL.ps1
+pip install -e .
+cp .env.example .env  # Add your API key
+agentshub run --task "Your task here"
 ```
 
-Dashboard: **http://localhost:3434**
+---
 
-### 🏗️ Mimari
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| **Multi-Agent Orchestration** | Spawn multiple agents with distinct roles, let them collaborate autonomously |
+| **Local-First Architecture** | All processing on your machine — no cloud middleman, no data exfiltration |
+| **Gemini Free Tier Native** | Optimized for Gemini Flash/Flash-Lite free tier (10 RPM, 1M context) |
+| **Model-Agnostic** | Swap to OpenAI, Anthropic, Ollama, or any OpenAI-compatible endpoint |
+| **Skill System** | Extensible skill/tool plugins — file I/O, web search, code execution, custom tools |
+| **Human-in-the-Loop** | Built-in approval gates — agents propose, you decide |
+| **Cost Tracking** | Real-time token/cost dashboard per agent, per session |
+| **Turkish + English** | Bilingual prompts, outputs, and documentation |
+| **CLI-First** | No GUI dependency — scriptable, pipeable, CI/CD friendly |
+| **MIT Licensed** | Fork it, sell it, embed it. No elastic license traps. |
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────┐
+│                   AgentsHUB CLI                       │
+├─────────────────────────────────────────────────────┤
+│                 Orchestrator (Brain)                  │
+│         task decomposition / delegation / merge      │
+├──────────┬──────────┬──────────┬────────────────────┤
+│ Agent 1  │ Agent 2  │ Agent 3  │  ... Agent N       │
+│ (Role A) │ (Role B) │ (Role C) │  (Custom Role)     │
+├──────────┴──────────┴──────────┴────────────────────┤
+│              Shared Memory / Context Layer            │
+├─────────────────────────────────────────────────────┤
+│                    Skill Registry                     │
+│  [web_search] [file_io] [code_exec] [custom_tool]   │
+├─────────────────────────────────────────────────────┤
+│               Model Router (LLM Layer)               │
+│  Gemini Flash | GPT-4o | Claude | Ollama | Custom   │
+└─────────────────────────────────────────────────────┘
+```
+
+**Key design decisions:**
+- Agents are stateless workers — state lives in shared checkpoints (no RAM bloat)
+- Orchestrator handles task decomposition; agents never need to know about each other
+- Model Router enables hot-swapping between providers mid-session
+- Skills are isolated plugins — a failing skill cannot crash the runtime
+
+---
+
+## Supported Models
+
+| Provider | Model | Status | Cost (AgentsHUB default config) |
+|----------|-------|--------|------|
+| **Google Gemini** | Flash 2.5 / Flash-Lite | Full support (default) | $0 (free tier) |
+| **Google Gemini** | Pro 2.5 | Full support | Pay-as-you-go |
+| **OpenAI** | GPT-4o / GPT-4o-mini | Full support | Standard API pricing |
+| **Anthropic** | Claude Sonnet/Haiku | Full support | Standard API pricing |
+| **Ollama** | Llama 3, Mistral, Qwen | Full support | $0 (local) |
+| **Any OpenAI-compatible** | LM Studio, vLLM, etc. | Full support | Varies |
+
+> Default: Gemini Flash free tier. Switch with `agentshub config set --model <provider/model>`.
+
+---
+
+## Comparison with Alternatives
+
+| | **AgentsHUB** | CrewAI | LangGraph | AutoGen |
+|---|---|---|---|---|
+| **License** | MIT | MIT | MIT (core) / Elastic (server) | MIT (maintenance mode) |
+| **Local-first** | Yes (default) | No (cloud-first) | No (LangSmith cloud) | Partial |
+| **Setup complexity** | 3 commands | pip + config + code | pip + multiple packages + graph definition | pip + complex config |
+| **Free LLM tier built-in** | Yes (Gemini Flash) | No | No | No |
+| **Turkish support** | Native | None | None | None |
+| **Human-in-the-loop** | Built-in CLI gates | Plugin required | Checkpoint-based | Conversation-based |
+| **Min cost for multi-agent** | $0/month | $20+/month (API costs) | $20+/month | $20+/month |
+| **GitHub Stars** | Growing | ~52K | ~126K (LangChain org) | ~57K |
+| **Target user** | Solo devs, SMBs, Turkish market | Enterprise teams | Production ML pipelines | Research |
+| **Vendor lock-in risk** | Zero | Low-Medium | Medium (LangSmith) | Low |
+
+---
+
+## Usage Examples
+
+### 1. Research + Content Pipeline
+
+```python
+from agentshub import Team, Agent
+
+researcher = Agent(
+    role="researcher",
+    goal="Find accurate, up-to-date information on the given topic",
+    model="gemini-flash"
+)
+
+writer = Agent(
+    role="writer",
+    goal="Transform research into clear, engaging content",
+    model="gemini-flash"
+)
+
+team = Team(agents=[researcher, writer])
+result = team.run("Analyze the Turkish manufacturing sector's AI adoption rate and write a 1000-word report")
+
+print(result.output)       # Final report
+print(result.cost)         # "$0.00"
+print(result.tokens_used)  # Token breakdown per agent
+```
+
+### 2. Autonomous Code Review Agent
+
+```bash
+# Single command — reads your staged git changes, reviews, suggests fixes
+agentshub run \
+  --task "Review my staged git changes for bugs, security issues, and style problems" \
+  --skills git_diff,code_analysis \
+  --output-format markdown
+```
+
+### 3. Multi-Agent Customer Support (Turkish)
+
+```python
+from agentshub import Team, Agent
+
+siniflandirici = Agent(
+    role="siniflandirici",
+    goal="Gelen musteri mesajini kategorize et: teknik/fatura/genel",
+    model="gemini-flash",
+    language="tr"
+)
+
+cozumcu = Agent(
+    role="cozumcu",
+    goal="Kategoriye gore musteri sorununu coz ve Turkce yanit uret",
+    model="gemini-flash",
+    language="tr"
+)
+
+ekip = Team(agents=[siniflandirici, cozumcu])
+yanit = ekip.run("Makinam surekli E-04 hatasi veriyor, 3 gundur uretim duruyor")
+# → Kategori: teknik
+# → Yanit: "E-04 hatası servo motor encoder arızasına işaret eder. Şu adımları uygulayın: ..."
+```
+
+---
+
+## Project Structure
 
 ```
 AgentsHUB/
-├── app/
-│   ├── src/
-│   │   ├── bridge/          # LLM Bridge (Gemini AI Studio + Vertex AI)
-│   │   ├── core/            # Ajan motoru, Kaizen, Genesis, sinyal sistemi
-│   │   ├── gateway/         # Express API sunucusu + route'lar
-│   │   ├── memory/          # 3 katmanlı hafıza (RAM + SQLite + Cache)
-│   │   ├── skills/          # Skill loader, sandbox runner, registry
-│   │   ├── security/        # CyberShield, Path Guard, SSRF koruması
-│   │   ├── scheduler/       # Cron zamanlanmış görevler
-│   │   └── channels/        # Telegram bot entegrasyonu
-│   ├── dashboard/           # React SPA (Vite + TailwindCSS)
-│   └── Agents/              # Ajan dizinleri (kullanıcı oluşturur)
-├── Marketplace/skills/      # 29 yerleşik yetenek
-├── launcher.mjs             # Ana başlatıcı
-├── START.bat                # Çift tıkla çalıştır
-└── INSTALL.ps1              # PowerShell kurulum scripti
+├── agentshub/
+│   ├── core/           # Orchestrator, Agent base, Team logic
+│   ├── models/         # Model router, provider adapters
+│   ├── skills/         # Built-in skill plugins
+│   ├── memory/         # Shared context, checkpoints
+│   └── cli/            # CLI entry points
+├── examples/           # Ready-to-run example scripts
+├── docs/               # Extended documentation
+├── tests/
+├── .env.example
+├── pyproject.toml
+└── README.md
 ```
-
-### 🤝 Desteklenen Modeller
-
-| Model | Kullanım |
-|-------|----------|
-| Gemini 2.5 Flash | Hızlı günlük kullanım (önerilen) |
-| Gemini 2.5 Pro | Karmaşık analiz ve kodlama |
-| Gemini 3.x Flash/Pro | Yeni nesil modeller |
-
-> ⚠️ Gemini 2.0 ve altı sürümler desteklenmez.
-
-### 🤝 Katkıda Bulunma
-
-Katkılarınızı bekliyoruz! Detaylı rehber için [CONTRIBUTING.md](CONTRIBUTING.md) dosyasına göz atın.
-
-- 🐛 [Bug Raporu Aç](../../issues/new?template=bug_report.md)
-- ✨ [Özellik Talep Et](../../issues/new?template=feature_request.md)
-- 📖 [Güvenlik Politikası](SECURITY.md)
-- 📜 [Davranış Kuralları](CODE_OF_CONDUCT.md)
-
-### 📄 Lisans
-
-MIT — Kişisel ve ticari kullanım serbesttir.
-
-**EHARTE Elektrikli Hava Araçları Teknolojileri Ltd. Şti.**
-İTÜ Çekirdek + Mersin Teknopark
-
-📧 İletişim: info@agentshub.com.tr
-🌐 Web: [agentshub.com.tr](https://agentshub.com.tr)
 
 ---
 
-## 🇬🇧 English
+## Contributing
 
-### What is AgentsHUB?
+We welcome contributions of all sizes — from typo fixes to new skill plugins.
 
-AgentsHUB is an **open-source Agentic Operating System** that runs entirely on your personal computer. It's not just a chatbot — it's a platform for creating autonomous AI agents that can read/write files, browse the web, take screenshots, run Python code, send emails, analyze PDFs, generate images, and much more.
+```bash
+# Fork, clone, create a branch
+git checkout -b feat/your-feature
 
-**Your data stays on YOUR computer.** No chat history, files, or personal information is ever sent to external servers. AgentsHUB gives you the power of AI **without sacrificing your privacy**.
+# Install dev dependencies
+pip install -e ".[dev]"
 
-### 🔒 Why AgentsHUB?
+# Run tests
+pytest
 
-| | Cloud-Based AI Services | AgentsHUB |
-|---|---|---|
-| **Your data** | On company servers | On your computer |
-| **Chat history** | Readable by the company | Only you can see it |
-| **Your files** | Uploaded to the cloud | Never leaves your machine |
-| **Monthly cost** | $20-200/month | **$0/month** ($300 free credit = ~1 year free) |
-| **Capabilities** | Chat only | Files, terminal, web, email, PDF... |
-| **Customization** | Limited | Unlimited (build your own agents) |
-| **Autonomous work** | ❌ | ✅ Scheduled tasks, self-learning |
-
-### ⚔️ AgentsHUB vs OpenClaw — Open Source Agent Platforms
-
-| Criteria | OpenClaw | AgentsHUB |
-|----------|----------|-----------|
-| **Interface** | Terminal (CLI) | Modern Web Dashboard |
-| **Installation** | `npm i -g` + config files | Double-click → runs |
-| **Target audience** | Developers | Everyone |
-| **Monthly cost** | Model-dependent ($20-200+) | **$0/month** ($300 free credit = ~1 year) |
-| **Skill count** | 51 (document-based) | 29 (executable sandbox code) |
-| **Model support** | 15+ providers | Google Gemini (AI Studio + Vertex AI) |
-| **Channel support** | 12+ channels (Discord, Slack, Telegram...) | Web Dashboard + Telegram |
-| **Autonomous learning** | ❌ | ✅ Kaizen Engine (auto behavior improvement) |
-| **Agent spawning** | Template-based | ✅ Genesis (agent → creates new agents) |
-| **Memory system** | LanceDB (single layer) | 3-layer (RAM + SQLite/Vector + Google Cache) |
-| **Image generation** | ❌ | ✅ Google Imagen integration |
-| **Turkish UI** | ❌ | ✅ Full Turkish interface |
-| **Circuit Breaker** | ❌ | ✅ Automatic fault tolerance |
-| **Setup time** | ~10 min (terminal required) | ~2 min (double-click or setup.exe) |
-
-> 📖 Detailed technical comparison: [OPENCLAW_VS_AGENTSHUB_ANALIZ.md](docs/raporlar/OPENCLAW_VS_AGENTSHUB_ANALIZ.md)
-
-### ✨ Features
-
-#### 🧠 29 Built-in Skills
-Your agents come equipped with powerful capabilities out of the box:
-
-| Category | Skills |
-|----------|--------|
-| 📁 **File Operations** | Read/write files, directory scanning, file management |
-| 🌐 **Web & Search** | Google, DuckDuckGo, Brave, Tavily search engines |
-| 🖥️ **Terminal** | Execute command-line commands |
-| 🐍 **Python** | Write and run Python scripts |
-| 📊 **Excel & PDF** | Spreadsheet analysis, PDF text extraction |
-| 🎨 **Image Generation** | AI image creation with Google Imagen |
-| 📸 **Screenshots** | Automatic screen capture |
-| 🌍 **Web Browser** | Headless browser for web page navigation |
-| 📧 **Email** | Send and read emails |
-| 🔗 **GitHub** | Repository management, commits, PR creation |
-| ⏰ **Scheduler** | Cron-based autonomous scheduled tasks |
-| 🛡️ **System Monitor** | CPU, RAM, disk usage tracking |
-| 🤖 **MCP Bridge** | Model Context Protocol integration |
-
-#### 🧬 Autonomous Evolution
-- **Kaizen Engine** — Agents learn from every conversation and autonomously improve their behavior
-- **Genesis** — An agent can create new agents when needed
-- **Skill Marketplace** — Discover and install new capabilities with one click
-
-#### 🔐 Privacy & Security
-- All data stays **on your local machine** — nothing is sent to the cloud
-- Chat history stored in **encrypted SQLite** databases
-- **CyberShield** — AI-powered input sanitization
-- **Path Guard** — Prevents unauthorized access to system files
-- **Sandbox Runner** — Skills run in isolated environments
-- **Circuit Breaker** — Automatic fault tolerance with error thresholds
-
-#### 💬 Multi-Agent System
-- Create unlimited independent agents
-- Each agent has its own DNA, rules, and skills
-- Inter-agent **signal system** for communication
-- Separate chat history and memory per agent
-
-#### 📱 Remote Access
-- **Telegram Bot** integration — send commands to your agents from your phone
-- Leave your computer running at home, issue tasks from anywhere via Telegram
-
-#### 🧠 3-Layer Memory System
-- **L1** — RAM: Active conversation context
-- **L2** — SQLite + Vector: Long-term memory, recall similar experiences
-- **L3** — Google Cache: API response caching, token savings
-
-#### 📊 Real-Time Telemetry
-- Live token usage tracking
-- Cost analysis and reporting
-- API call statistics
-
-### 📸 Screenshots
-
-<div align="center">
-
-<img src="docs/images/dashboard-screenshot.png" alt="AgentsHUB Dashboard" width="90%">
-
-*AgentsHUB Dashboard — Main control panel, agent management, chat, and system monitoring*
-
-</div>
-
-### 💰 Free AI Usage — $300 Google Cloud Credit
-
-AgentsHUB uses **Google Gemini** models. You have two options:
-
-1. **Google AI Studio** (Free tier) — Limited but sufficient to get started
-2. **Google Cloud Vertex AI** — New accounts receive **$300 in free credits**
-
-> **$300 credit ≈ approximately 1 year of AI usage for a standard user.**
-> Even if you send 50-100 messages per day, your credit lasts 10-12 months.
-> **No charges** are made to your credit card until the credit is exhausted.
-
-📖 Detailed credit activation guide: [chat.agentshub.com.tr](https://chat.agentshub.com.tr)
-
-### ⚡ Quick Start
-
-**All you need:** A [Google AI Studio API Key](https://aistudio.google.com) (free)
-
-#### Method 1: Double-Click to Run (Recommended)
-
-```
-1. Download this repo (Code → Download ZIP) or clone it
-2. Double-click START.bat
-3. The system handles everything (Node.js download, dependencies, startup)
-4. Browser opens http://localhost:3434
-5. Paste your API key in Settings → create an agent → start using
+# Submit a PR
 ```
 
-> **Note:** First run downloads Node.js and dependencies automatically (~2 min). Subsequent launches are instant.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines, code style, and the contributor covenant.
 
-#### Method 2: Setup Installer (.exe) — Zero Dependencies
+**Good first issues:** Check the [`good-first-issue`](https://github.com/ufukefekaya-tr/AgentsHUB/labels/good-first-issue) label for beginner-friendly tasks.
 
-Download **AgentsHUB-2.0.0-beta-Setup.exe** (49 MB) from [agentshub.com.tr](https://agentshub.com.tr/i_ndirme_sayfas/).
+---
 
-Everything is included: Node.js, all dependencies, 29 skills, desktop shortcut. No additional downloads needed.
+## Roadmap
 
-#### Method 3: PowerShell (For Developers)
+| Phase | Status | Target |
+|-------|--------|--------|
+| Multi-agent orchestration (v2.0) | Done | Core runtime |
+| Gemini free tier optimization | Done | $0 default operation |
+| Skill plugin system | Done | Extensibility |
+| Human-in-the-loop gates | Done | Safety |
+| MCP (Model Context Protocol) support | In Progress | Tool ecosystem |
+| Web UI dashboard | Planned | Visual monitoring |
+| Agent marketplace / skill store | Planned | Community skills |
+| Distributed agent execution | Planned | Scale-out |
+| Voice interface (Turkish TTS/STT) | Planned | Accessibility |
 
-```powershell
-git clone https://github.com/ufukefekaya-tr/AgentsHUB.git
-cd AgentsHUB
-Set-ExecutionPolicy Bypass -Scope Process -Force
-.\INSTALL.ps1
+---
+
+## License
+
+[MIT](LICENSE) — Use it however you want. Fork it. Sell it. Embed it in your product. No strings attached.
+
+---
+
+## Community
+
+- [GitHub Discussions](https://github.com/ufukefekaya-tr/AgentsHUB/discussions) — Questions, ideas, show & tell
+- [Telegram](https://t.me/agentshub) — Real-time chat (TR + EN)
+- [Twitter/X](https://x.com/agaborhub) — Updates and releases
+
+**Built by [EHARTE Ltd](https://eharte.com)** (ITU Cekirdek + Mersin Teknopark)
+
+---
+
+<details>
+<summary><strong>Turkce / Turkish</strong></summary>
+
+## AgentsHUB Nedir?
+
+AgentsHUB, bilgisayarinizda calisan, acik kaynakli, Turkce destekli bir Agentic OS'tur. Yapay zeka ajanlarinizi yerel olarak olusturur, yonetir ve calistirir — veriniz sizde kalir, bulut bagimliligina son.
+
+### Neden AgentsHUB?
+
+- **Yerel calisir:** Veriniz diskinizden cikmaz. Bulut koleliGine son.
+- **Ucretsiz:** Gemini Flash ucretsiz katmaniyla $0/ay cok-ajan is akislari.
+- **Turkce-native:** Turkce prompt, cikti ve dokumantasyon.
+- **MIT Lisans:** Catal, sat, gomulu kullan — hicbir kisitlama yok.
+- **3 komutla basla:** Kurulum, ayar, calistir.
+
+### Hizli Baslangic
+
+```bash
+pip install agentshub
+agentshub config set --api-key GEMINI_API_ANAHTARINIZ
+agentshub run --task "Turkiye imalat sektorunde AI kullanim oranini arastir"
 ```
 
-Dashboard: **http://localhost:3434**
+</details>
 
-### 🏗️ Architecture
+---
 
-```
-AgentsHUB/
-├── app/
-│   ├── src/
-│   │   ├── bridge/          # LLM Bridge (Gemini AI Studio + Vertex AI)
-│   │   ├── core/            # Agent engine, Kaizen, Genesis, signal system
-│   │   ├── gateway/         # Express API server + routes
-│   │   ├── memory/          # 3-layer memory (RAM + SQLite + Cache)
-│   │   ├── skills/          # Skill loader, sandbox runner, registry
-│   │   ├── security/        # CyberShield, Path Guard, SSRF protection
-│   │   ├── scheduler/       # Cron scheduled tasks
-│   │   └── channels/        # Telegram bot integration
-│   ├── dashboard/           # React SPA (Vite + TailwindCSS)
-│   └── Agents/              # Agent directories (user-created)
-├── Marketplace/skills/      # 29 built-in skills
-├── launcher.mjs             # Main launcher
-├── START.bat                # Double-click to run
-└── INSTALL.ps1              # PowerShell installation script
-```
+<!-- 
+GitHub Repository Description (OG / meta):
+"Local-first open-source Agentic OS — orchestrate autonomous AI agents on your machine. Gemini-powered, MIT licensed, Turkish + English. No cloud, no lock-in."
 
-### 🤝 Supported Models
-
-| Model | Usage |
-|-------|-------|
-| Gemini 2.5 Flash | Fast daily use (recommended) |
-| Gemini 2.5 Pro | Complex analysis and coding |
-| Gemini 3.x Flash/Pro | Next-generation models |
-
-> ⚠️ Gemini 2.0 and below are not supported.
-
-### 🤝 Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
-- 🐛 [Report a Bug](../../issues/new?template=bug_report.md)
-- ✨ [Request a Feature](../../issues/new?template=feature_request.md)
-- 📖 [Security Policy](SECURITY.md)
-- 📜 [Code of Conduct](CODE_OF_CONDUCT.md)
-
-### 📄 License
-
-MIT — Free for personal and commercial use.
-
-**EHARTE Elektrikli Hava Araçları Teknolojileri Ltd. Şti.**
-ITU Cekirdek Incubation + Mersin Technopark
-
-📧 Contact: info@agentshub.com.tr
-🌐 Web: [agentshub.com.tr](https://agentshub.com.tr)
+Topics: agentic-ai, llm, gemini, autonomous-agents, multi-agent, turkish, local-first, open-source, ai-agents, developer-tools, orchestration, gemini-flash, mit-license, no-vendor-lock-in, agentic-os
+-->
