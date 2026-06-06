@@ -6,6 +6,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/ufukefekaya-tr/AgentsHUB?style=social)](https://github.com/ufukefekaya-tr/AgentsHUB)
 [![Version](https://img.shields.io/badge/version-2.0.0--beta-blue)](https://github.com/ufukefekaya-tr/AgentsHUB/releases)
 [![Language](https://img.shields.io/badge/lang-TR%20%7C%20EN-orange)]()
+[![Website](https://img.shields.io/badge/Website-agentshub.com.tr-8A2BE2)](https://agentshub.com.tr)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://python.org)
 
 ---
@@ -292,6 +293,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines, code style, and 
 
 ## Community
 
+- [Website](https://agentshub.com.tr) — Official site
 - [GitHub Discussions](https://github.com/ufukefekaya-tr/AgentsHUB/discussions) — Questions, ideas, show & tell
 - [Telegram](https://t.me/agentshub) — Real-time chat (TR + EN)
 - [Twitter/X](https://x.com/agaborhub) — Updates and releases
